@@ -29,7 +29,7 @@ comprueban los tests (`pnpm test` / `pnpm e2e`); el resto es manual.
 
 ## 2. SEO on-page
 
-- [ ] 🤖 Título ≤ 60 caracteres: _servicio principal + ciudad + marca_ ("Barbería en Huesca · …").
+- [ ] 🤖 Título ≤ 60 caracteres: _servicio principal + ciudad + marca_ ("Fisioterapia en Huesca · Marca").
 - [ ] 🤖 Descripción 120–155 caracteres con servicio, ciudad y llamada a la acción.
 - [ ] 🤖 Un único `<h1>` por página.
 - [ ] Jerarquía de encabezados lógica (h1 → h2 → h3, sin saltos).
@@ -37,7 +37,7 @@ comprueban los tests (`pnpm test` / `pnpm e2e`); el resto es manual.
 - [ ] 🤖 Canonical presente y apuntando al dominio final.
 - [ ] 🤖 `lang="es"` en `<html>`.
 - [ ] 🤖 Todas las imágenes con `alt`; las decorativas con `alt=""`.
-- [ ] Nombres de archivo de fotos descriptivos (`03-degradado-con-barba.jpg`).
+- [ ] Nombres de archivo de fotos descriptivos (`03-fachada-del-local.jpg`).
 - [ ] URLs cortas, en minúsculas y con guiones.
 - [ ] 🤖 Páginas legales y 404 con `noindex`.
 
@@ -49,7 +49,7 @@ comprueban los tests (`pnpm test` / `pnpm e2e`); el resto es manual.
 
 ## 4. Datos estructurados (JSON-LD)
 
-- [ ] `schemaType` correcto (HairSalon, Restaurant, Dentist, AutoRepair… o LocalBusiness).
+- [ ] `schemaType` correcto (LocalBusiness por defecto; mejor uno concreto: HairSalon, Restaurant, Dentist, AutoRepair…).
 - [ ] 🤖 NAP del JSON-LD = NAP de la web = NAP de Google.
 - [ ] Coordenadas `geo` exactas (Google Maps → clic derecho sobre el local → copiar coordenadas).
 - [ ] Horario `openingHoursSpecification` igual que en Google.

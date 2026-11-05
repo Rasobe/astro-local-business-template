@@ -7,7 +7,7 @@ const euro = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR"
 <section class="section services" id="servicios">
   <div class="container">
     <p class="eyebrow">Servicios y precios</p>
-    <h2>Carta de servicios</h2>
+    <h2>Qué hacemos</h2>
     <ul class="services__list">
       {
         business.services.map((s) => (
@@ -59,7 +59,7 @@ const euro = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR"
     }
   }
   .services__price {
-    font-family: var(--font-ui), var(--font-body-fallback);
+    font-family: var(--font-body), var(--font-body-fallback);
     font-size: 1.35rem;
     font-weight: 600;
     color: var(--c-text) !important;

@@ -12,7 +12,7 @@ const photos = Object.entries(files)
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([path, mod], i) => ({
     src: mod.default,
-    // El nombre del archivo sirve de alt: "03-degradado-con-barba.jpg" → "Degradado con barba"
+    // El nombre del archivo sirve de alt: "03-fachada-del-local.jpg" → "Fachada del local"
     alt:
       path
         .split("/")
@@ -29,7 +29,7 @@ const photos = Object.entries(files)
     <section class="section" id="galeria">
       <div class="container">
         <p class="eyebrow">Trabajos</p>
-        <h2>Lo que sale de esta silla</h2>
+        <h2>Nuestro trabajo</h2>
         <ul class="gallery">
           {photos.map((p, i) => (
             <li class={i % 5 === 0 ? "gallery__item gallery__item--tall" : "gallery__item"}>

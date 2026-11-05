@@ -40,6 +40,7 @@ const wa = business.whatsapp ? buildWhatsAppLink(business.whatsapp, business.wha
 <style lang="scss">
   .hero {
     position: relative;
+    color: #fff;
     min-height: min(88svh, 52rem);
     display: grid;
     align-items: end;
@@ -59,10 +60,13 @@ const wa = business.whatsapp ? buildWhatsAppLink(business.whatsapp, business.wha
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(to top, var(--c-bg) 5%, rgb(0 0 0 / 0.35) 60%, rgb(0 0 0 / 0.2));
+    background: linear-gradient(to top, rgb(0 0 0 / 0.75), rgb(0 0 0 / 0.35) 60%, rgb(0 0 0 / 0.15));
   }
   .hero__content {
     padding-block: var(--space-5);
+    .eyebrow {
+      color: rgb(255 255 255 / 0.85);
+    }
   }
   .hero__lead {
     max-width: 38rem;
@@ -76,9 +80,9 @@ const wa = business.whatsapp ? buildWhatsAppLink(business.whatsapp, business.wha
   }
   .hero__rating {
     margin-top: var(--space-3);
-    color: var(--c-muted);
+    color: rgb(255 255 255 / 0.85);
     span {
-      color: #e8b04a;
+      color: #fbbf24;
       letter-spacing: 0.1em;
     }
   }

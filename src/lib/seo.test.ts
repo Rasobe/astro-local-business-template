@@ -10,7 +10,7 @@ describe("buildPageTitle", () => {
     expect(buildPageTitle("Aviso legal", "Marca")).toBe("Aviso legal · Marca");
   });
   it("respeta títulos absolutos", () => {
-    expect(buildPageTitle("Barbería en Huesca", "Marca", true)).toBe("Barbería en Huesca");
+    expect(buildPageTitle("Fontanero en Zaragoza", "Marca", true)).toBe("Fontanero en Zaragoza");
   });
 });
 
