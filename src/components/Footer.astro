@@ -1,0 +1,53 @@
+---
+import { business } from "@config/business";
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <p>© {year} {business.name}</p>
+    <nav aria-label="Legal">
+      <ul>
+        <li><a href="/aviso-legal">Aviso legal</a></li>
+        <li><a href="/privacidad">Privacidad</a></li>
+        <li><a href="/cookies">Cookies</a></li>
+      </ul>
+    </nav>
+    {
+      business.social.instagram && (
+        <p>
+          <a href={business.social.instagram} rel="noopener" target="_blank">Instagram</a>
+        </p>
+      )
+    }
+  </div>
+</footer>
+
+<style lang="scss">
+  @use "styles/breakpoints" as *;
+  .footer {
+    border-top: 1px solid var(--c-line);
+    padding-block: var(--space-4) 6rem; // hueco para el botón flotante en móvil
+    color: var(--c-muted);
+    font-size: 0.95rem;
+    @media (min-width: $bp-md) {
+      padding-bottom: var(--space-4);
+    }
+  }
+  .footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-2);
+    p {
+      margin: 0;
+    }
+    ul {
+      display: flex;
+      gap: var(--space-2);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+</style>

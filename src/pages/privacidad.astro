@@ -1,0 +1,49 @@
+---
+import LegalLayout from "@/layouts/LegalLayout.astro";
+import { business } from "@config/business";
+const { legal } = business;
+// Plantilla orientativa (RGPD + LOPDGDD). Si añades formularios, newsletter o reservas propias,
+// amplía las finalidades y bases legales.
+---
+
+<LegalLayout
+  title="Política de privacidad"
+  description={`Política de privacidad de ${business.name}: quién trata tus datos, para qué, durante cuánto tiempo y cómo ejercer tus derechos.`}
+>
+  <h2>Responsable del tratamiento</h2>
+  <p>
+    {legal.owner} (NIF {legal.taxId}), {legal.address}. Contacto:
+    <a href={`mailto:${legal.email}`}>{legal.email}</a>.
+  </p>
+
+  <h2>Qué datos tratamos</h2>
+  <p>
+    Esta web no tiene formularios ni registro de usuarios. Si contactas por WhatsApp, teléfono o
+    correo, trataremos los datos que nos facilites (nombre, teléfono y el contenido del mensaje).
+  </p>
+
+  <h2>Finalidad y base legal</h2>
+  <p>
+    Gestionar tu cita o responder a tu consulta. La base legal es tu consentimiento y la aplicación de
+    medidas precontractuales a petición tuya (art. 6.1.a y 6.1.b RGPD).
+  </p>
+
+  <h2>Conservación</h2>
+  <p>
+    Conservamos los datos el tiempo necesario para atender tu solicitud y, después, durante los plazos
+    legales que correspondan.
+  </p>
+
+  <h2>Destinatarios</h2>
+  <p>
+    No cedemos datos a terceros salvo obligación legal. Al usar WhatsApp, se aplica también la
+    política de privacidad de WhatsApp (Meta). El alojamiento web lo presta Vercel Inc.
+  </p>
+
+  <h2>Tus derechos</h2>
+  <p>
+    Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación y
+    portabilidad escribiendo a <a href={`mailto:${legal.email}`}>{legal.email}</a>. Si consideras que
+    no se han atendido, puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).
+  </p>
+</LegalLayout>

@@ -1,0 +1,33 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} noindex>
+  <article class="section">
+    <div class="container legal">
+      <h1>{title}</h1>
+      <slot />
+      <p class="legal__updated">Última actualización: {__BUILD_DATE__.slice(0, 10)}</p>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .legal {
+    max-width: 46rem;
+  }
+  .legal :global(h2) {
+    font-size: 1.5rem;
+    margin-top: var(--space-4);
+  }
+  .legal__updated {
+    margin-top: var(--space-4);
+    color: var(--c-muted);
+    font-size: 0.9rem;
+  }
+</style>

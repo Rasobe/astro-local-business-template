@@ -1,0 +1,29 @@
+---
+import LegalLayout from "@/layouts/LegalLayout.astro";
+import { business } from "@config/business";
+// Si añades Google Analytics, Meta Pixel, un iframe de Google Maps o YouTube: NECESITAS un banner
+// de consentimiento previo y actualizar esta página. Sin eso, esta plantilla es correcta.
+---
+
+<LegalLayout
+  title="Política de cookies"
+  description={`Política de cookies de ${business.name}: esta web no usa cookies de análisis ni publicidad, solo almacenamiento técnico imprescindible.`}
+>
+  <h2>¿Usa cookies esta web?</h2>
+  <p>
+    No. Este sitio no instala cookies de análisis, publicidad ni redes sociales, por eso no te
+    mostramos ningún aviso de consentimiento.
+  </p>
+
+  <h2>Enlaces externos</h2>
+  <p>
+    Los enlaces a WhatsApp, Instagram o Google Maps te llevan a servicios de terceros, que aplican sus
+    propias políticas de cookies cuando los visitas.
+  </p>
+
+  <h2>Cambios</h2>
+  <p>
+    Si en el futuro incorporamos herramientas que usen cookies, actualizaremos esta política y te
+    pediremos el consentimiento antes de instalarlas.
+  </p>
+</LegalLayout>

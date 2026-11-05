@@ -1,0 +1,86 @@
+---
+import { business } from "@config/business";
+// Reseñas copiadas de Google con permiso. Se muestran como texto, NO como datos estructurados
+// (Google ignora/penaliza el marcado de reseñas propias).
+---
+
+{
+  business.reviews.length > 0 && (
+    <section class="section reviews" id="opiniones">
+      <div class="container">
+        <p class="eyebrow">Opiniones</p>
+        <h2>
+          {business.rating
+            ? `${business.rating.value.toLocaleString("es-ES")} de 5 en Google`
+            : "Lo que dicen los clientes"}
+        </h2>
+        <ul class="reviews__list">
+          {business.reviews.map((r) => (
+            <li class="reviews__card">
+              <p class="reviews__stars" aria-label={`${r.rating} de 5 estrellas`}>
+                {"★".repeat(r.rating)}
+              </p>
+              <blockquote>
+                <p>{r.text}</p>
+              </blockquote>
+              <p class="reviews__author">
+                {r.author}
+                {r.date && <span> · {r.date}</span>}
+              </p>
+            </li>
+          ))}
+        </ul>
+        {business.reviewUrl && (
+          <p class="reviews__cta">
+            <a class="btn btn--ghost" href={business.reviewUrl} rel="noopener" target="_blank">
+              Deja tu reseña en Google
+            </a>
+          </p>
+        )}
+      </div>
+    </section>
+  )
+}
+
+<style lang="scss">
+  @use "styles/breakpoints" as *;
+  .reviews {
+    background: var(--c-surface);
+  }
+  .reviews__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2);
+    @media (min-width: $bp-md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .reviews__card {
+    padding: var(--space-3);
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    background: var(--c-bg);
+    blockquote {
+      margin: 0;
+    }
+  }
+  .reviews__stars {
+    color: #e8b04a;
+    letter-spacing: 0.15em;
+  }
+  .reviews__author {
+    margin: 0;
+    font-family: var(--font-ui), var(--font-body-fallback);
+    font-weight: 600;
+    span {
+      font-weight: 500;
+      color: var(--c-muted);
+    }
+  }
+  .reviews__cta {
+    margin-top: var(--space-3);
+    text-align: center;
+  }
+</style>

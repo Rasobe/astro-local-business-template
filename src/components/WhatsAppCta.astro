@@ -1,0 +1,41 @@
+---
+import { business } from "@config/business";
+import { buildWhatsAppLink } from "@/lib/whatsapp";
+const wa = business.whatsapp ? buildWhatsAppLink(business.whatsapp, business.whatsappMessage) : null;
+---
+
+{
+  wa && (
+    <a class="wa-cta" href={wa} rel="noopener" target="_blank" data-testid="wa-cta">
+      Pedir cita por WhatsApp
+    </a>
+  )
+}
+
+<style lang="scss">
+  @use "styles/breakpoints" as *;
+  // Botón fijo solo en móvil: es donde se pide la cita
+  .wa-cta {
+    position: fixed;
+    left: 1rem;
+    right: 1rem;
+    bottom: calc(1rem + env(safe-area-inset-bottom));
+    z-index: 60;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 52px;
+    border-radius: 999px;
+    background: var(--c-cta);
+    color: #0b2e17;
+    font-family: var(--font-ui), var(--font-body-fallback);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgb(0 0 0 / 0.4);
+    @media (min-width: $bp-md) {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,85 @@
+---
+import { Image } from "astro:assets";
+import { business } from "@config/business";
+import { buildTelLink, buildWhatsAppLink } from "@/lib/whatsapp";
+import hero from "@/assets/hero.jpg";
+
+const wa = business.whatsapp ? buildWhatsAppLink(business.whatsapp, business.whatsappMessage) : null;
+---
+
+<section class="hero">
+  <!-- Imagen LCP: carga prioritaria, nunca lazy -->
+  <Image
+    src={hero}
+    alt=""
+    class="hero__bg"
+    widths={[640, 960, 1280, 1920]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+  />
+  <div class="container hero__content">
+    <p class="eyebrow">{business.tagline}</p>
+    <h1>{business.name}</h1>
+    <p class="hero__lead">{business.description}</p>
+    <div class="hero__actions">
+      {wa && <a class="btn" href={wa} rel="noopener" target="_blank">Pedir cita por WhatsApp</a>}
+      <a class="btn btn--ghost" href={buildTelLink(business.phone)}>Llamar</a>
+    </div>
+    {
+      business.rating && (
+        <p class="hero__rating">
+          <span aria-hidden="true">★★★★★</span> {business.rating.value.toLocaleString("es-ES")} en Google ·{" "}
+          {business.rating.count} reseñas
+        </p>
+      )
+    }
+  </div>
+</section>
+
+<style lang="scss">
+  .hero {
+    position: relative;
+    min-height: min(88svh, 52rem);
+    display: grid;
+    align-items: end;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(to top, var(--c-bg) 5%, rgb(0 0 0 / 0.35) 60%, rgb(0 0 0 / 0.2));
+  }
+  .hero__content {
+    padding-block: var(--space-5);
+  }
+  .hero__lead {
+    max-width: 38rem;
+    font-size: 1.15rem;
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+  .hero__rating {
+    margin-top: var(--space-3);
+    color: var(--c-muted);
+    span {
+      color: #e8b04a;
+      letter-spacing: 0.1em;
+    }
+  }
+</style>

@@ -1,0 +1,54 @@
+---
+import { business, siteUrl } from "@config/business";
+import { buildPageTitle, canonicalUrl, seoWarnings } from "@/lib/seo";
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** El título se usa tal cual, sin "· Marca" */
+  absoluteTitle?: boolean;
+  image?: string;
+  imageAlt?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = business.seo.description,
+  absoluteTitle = false,
+  image = business.seo.ogImage,
+  imageAlt = business.seo.ogImageAlt,
+  noindex = false,
+} = Astro.props;
+
+const fullTitle = title ? buildPageTitle(title, business.name, absoluteTitle) : business.seo.title;
+const canonical = canonicalUrl(siteUrl, Astro.url.pathname);
+const imageUrl = new URL(image, `${siteUrl}/`).toString();
+const isPreview = process.env.VERCEL_ENV !== undefined && process.env.VERCEL_ENV !== "production";
+
+if (import.meta.env.DEV) {
+  for (const w of seoWarnings(fullTitle, description)) console.warn(`[seo] ${Astro.url.pathname}: ${w}`);
+}
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+{(noindex || isPreview) && <meta name="robots" content="noindex, nofollow" />}
+<link rel="canonical" href={canonical} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={business.name} />
+<meta property="og:locale" content={business.seo.locale} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={imageAlt} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+<meta name="twitter:image:alt" content={imageAlt} />

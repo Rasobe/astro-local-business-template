@@ -1,0 +1,26 @@
+// Tema del cliente. Cambia SOLO este archivo para adaptar colores, radios y espaciados.
+// Ejemplo: paleta "vintage americano / taller de motos".
+:root {
+  --c-bg: #141414;
+  --c-surface: #1e1a17;
+  --c-text: #ede3d3;
+  --c-muted: #c9cdd1;
+  --c-accent: #9b4a32;
+  --c-accent-2: #b3262b;
+  --c-accent-3: #1f4e8c;
+  --c-line: #3a2a1f;
+  --c-cta: #25d366; // WhatsApp
+
+  --radius: 6px;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --container: 72rem;
+
+  // Fallbacks por si la fuente aún no ha cargado (las definitivas las inyecta <Font>)
+  --font-display-fallback: Georgia, "Times New Roman", serif;
+  --font-body-fallback: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+

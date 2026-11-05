@@ -1,0 +1,69 @@
+---
+import { business } from "@config/business";
+import { buildWeekTable } from "@/lib/hours";
+import { buildTelLink } from "@/lib/whatsapp";
+
+const week = buildWeekTable(business.hours);
+const { street, postalCode, city } = business.address;
+// Sin iframe de Google Maps a propósito: pone cookies de terceros (obligaría a banner de
+// consentimiento) y penaliza el rendimiento. Un enlace a Maps es suficiente.
+---
+
+<section class="section" id="visitanos">
+  <div class="container visit">
+    <div>
+      <p class="eyebrow">Visítanos</p>
+      <h2>Horario y ubicación</h2>
+      <address class="visit__address">
+        <strong>{business.name}</strong><br />
+        {street}<br />
+        {postalCode} {city}<br />
+        <a href={buildTelLink(business.phone)}>{business.phone}</a>
+      </address>
+      <a class="btn" href={business.mapsUrl} rel="noopener" target="_blank">Cómo llegar</a>
+    </div>
+    <table class="visit__hours">
+      <caption class="sr-only">Horario de apertura</caption>
+      <tbody>
+        {
+          week.map((d) => (
+            <tr>
+              <th scope="row">{d.label}</th>
+              <td>{d.ranges.length ? d.ranges.join(" y ") : "Cerrado"}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "styles/breakpoints" as *;
+  .visit {
+    display: grid;
+    gap: var(--space-4);
+    @media (min-width: $bp-md) {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+  }
+  .visit__address {
+    font-style: normal;
+    margin-bottom: var(--space-3);
+  }
+  .visit__hours {
+    width: 100%;
+    border-collapse: collapse;
+    th,
+    td {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--c-line);
+      text-align: left;
+    }
+    td {
+      text-align: right;
+      color: var(--c-muted);
+    }
+  }
+</style>

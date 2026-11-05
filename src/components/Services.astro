@@ -1,0 +1,75 @@
+---
+import { business } from "@config/business";
+
+const euro = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 2 });
+---
+
+<section class="section services" id="servicios">
+  <div class="container">
+    <p class="eyebrow">Servicios y precios</p>
+    <h2>Carta de servicios</h2>
+    <ul class="services__list">
+      {
+        business.services.map((s) => (
+          <li class="services__item">
+            <div>
+              <h3>{s.name}</h3>
+              {s.description && <p>{s.description}</p>}
+            </div>
+            <p class="services__price">
+              {s.from && <span>desde </span>}
+              {euro.format(s.price)}
+              {s.duration && <small>{s.duration} min</small>}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "styles/breakpoints" as *;
+  .services {
+    background: var(--c-surface);
+  }
+  .services__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0 var(--space-4);
+    @media (min-width: $bp-md) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .services__item {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding-block: var(--space-2);
+    border-bottom: 1px dashed var(--c-line);
+    h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.25rem;
+    }
+    p {
+      margin: 0;
+      color: var(--c-muted);
+    }
+  }
+  .services__price {
+    font-family: var(--font-ui), var(--font-body-fallback);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--c-text) !important;
+    text-align: right;
+    white-space: nowrap;
+    small {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--c-muted);
+    }
+  }
+</style>
